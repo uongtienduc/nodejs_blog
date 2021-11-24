@@ -8,6 +8,7 @@ let Course = new Schema({
     image: { type: String, maxLength: 255},
     createdAt: { type: Date, default: Date.now},
     updatedAt: { type: Date, default: Date.now},
+    slug: { type: String }, // vào const Course nhé
 });
 
 var CoursesModel = mongoose.model('Courses', Course);
