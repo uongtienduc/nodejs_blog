@@ -2,6 +2,7 @@ const path = require('path');
 const express = require('express');
 const morgan = require('morgan');
 var handlebars = require('express-handlebars');
+const methodOverride = require('method-override');
 const route = require('./routes');
 const app = express();
 const port = 3000;
@@ -13,7 +14,10 @@ db.connect();
 
 //Template engine
 var hbs = handlebars.create({
-  extname: 'hbs'
+  extname: 'hbs', 
+  helpers: {
+    sum: (a,b) => a + b
+  }
 });
 
 //app.use(express.static('./src/resources/public'));
@@ -30,7 +34,7 @@ app.use(express.urlencoded({
 }));
 app.use(express.json());
 
-
+app.use(methodOverride('_method'));
 
 //HTTP logger
   //app.use(morgan('combined'))
